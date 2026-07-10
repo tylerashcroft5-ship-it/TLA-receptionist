@@ -1,14 +1,36 @@
-// Placeholder home page. Tyler is designing the real dashboard UI in Claude
-// Design — this just replaces the old "Cannot GET /" 404 with something that
-// confirms the platform is alive while that design work happens.
+// Dashboard home — server component. Middleware already guarantees an
+// authenticated user here. Loads real data from Supabase and hands it to the
+// tactical UI. Not statically cached — always reflects live data.
+export const dynamic = "force-dynamic";
 
-export default function Home() {
-  return (
-    <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ textAlign: "center" }}>
-        <h1 style={{ fontSize: "1.5rem", letterSpacing: "0.05em" }}>TLA CONTROL ROOM</h1>
-        <p style={{ opacity: 0.6, marginTop: "0.5rem" }}>Dashboard UI in progress. Webhooks are live at /api/*.</p>
-      </div>
-    </main>
-  );
+import { createClient } from "../lib/supabase/server.js";
+import { getClients, getRevenue, getCalls, getCallStats, getTools, poundsFromPence } from "../lib/data.js";
+import Dashboard from "./dashboard-client.js";
+
+export default async function Home() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  const [clients, revenue, calls, callStats, tools] = await Promise.all([
+    getClients(), getRevenue(), getCalls(30), getCallStats(), getTools(),
+  ]);
+
+  const data = {
+    clients: clients.map((c) => ({
+      id: c.id, name: c.name, status: c.status,
+      mrr: c.monthlyPence ? poundsFromPence(c.monthlyPence) : "—",
+    })),
+    revenue: {
+      mrr: poundsFromPence(revenue.mrrPence),
+      annual: poundsFromPence(revenue.annualPence),
+      activeCount: revenue.activeCount,
+      payingCount: revenue.payingCount,
+    },
+    calls,
+    callStats,
+    tools,
+  };
+
+  const operator = user?.email ? user.email.toUpperCase() : "ROOT";
+  return <Dashboard data={data} operator={operator} />;
 }

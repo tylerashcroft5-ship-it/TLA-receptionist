@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="28a384a8-e551-43cc-bbcf-6d4e5787f688"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("60ffb768-6bda-48dd-9f1b-09a307055915") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("7f1b4374-b6a3-4582-af51-e0cb582f0234") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("4720b53c-bea3-4a6a-afa9-f69dca08670a") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("8c914c1c-ad60-4bfd-b0d7-4c8da1b9b585") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("5a698932-9efe-41ed-b814-1fbdc012476c") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d1ddb6ba-a30f-4d4f-82d0-0486b859e45b") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("9dfb5d86-e343-43f2-bba6-d7dcaa03f3d9") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0afc4136-6d8e-4bc2-9fbf-4e3ad16fb0f1") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("72dc96a9-fe6e-4555-ba84-be918cc55824") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("b4f30677-8814-41fe-9c61-abc44477db08") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d17706f3-411f-4c53-8a23-65bbf03b9587") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("4b7eaeac-e80f-482b-aa88-efe96942745d") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5fb3f219-7cda-41a6-ae32-d6eef3608ef3") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c5978ec6-7590-4735-96e6-075da16ca9d8") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("34c6e129-b8f8-461a-9333-e295a6e74f16") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("6047c119-515a-4191-9c66-8e322cbd15f1") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("1df93f71-f20c-41ea-9f12-18db93a2d137") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("e7712a86-2e03-4af0-9994-92f492b91f8c") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("076ce06d-60b9-4636-8682-ab439cc27ac8") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("bfc1c9f8-82f0-4cae-805e-c79c4a91a980") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("c5da9de6-df8f-4e02-8e27-c52cc51d5f34") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("7a28dc20-e81d-49b6-b664-0622b50c5c22") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("bcfcdf57-d009-42f5-a19f-6cd6c6cc86f2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("183ac6f1-b14c-4cd4-9fc0-dc1dc83e4c49") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("c4010449-4cc2-4208-a56a-101c7c6ebf89") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  body{margin:0;background:#0d0d0d}
+  @keyframes blinkDot{0%,45%{opacity:1}50%,95%{opacity:.15}100%{opacity:1}}
+  @keyframes scanSweep{0%{transform:translateY(-120%)}100%{transform:translateY(120vh)}}
+  @keyframes flicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.35}94%{opacity:1}}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  @keyframes fadeUp{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+</style>
+
+</helmet>
+
+<div style="position:relative;min-height:100vh;width:100%;background-color:#0a0b0a;background-image:linear-gradient(rgba(90,150,120,0.03) 1px, transparent 1px),linear-gradient(90deg, rgba(90,150,120,0.03) 1px, transparent 1px);background-size:36px 36px;font-family:'IBM Plex Mono',ui-monospace,monospace;color:#8a9c92;overflow:hidden;font-feature-settings:'tnum' 1;">
+
+  <!-- ===================== BOOT OVERLAY ===================== -->
+  <div style="position:fixed;inset:0;z-index:80;background:#060706;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .7s ease,visibility .7s;opacity:{{ bootOverlayOpacity }};visibility:{{ bootOverlayVisibility }};cursor:pointer;" onclick="{{ skipBoot }}">
+
+    <div style="position:absolute;inset:18px;border:1px solid rgba(0,255,102,.35);pointer-events:none;"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,102,.5),transparent);animation:scanSweep 3.2s linear infinite;pointer-events:none;"></div>
+
+    <div style="position:absolute;top:34px;left:34px;font-size:12px;letter-spacing:1px;color:#ffb300;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="width:6px;height:6px;border-radius:50%;background:#ffb300;animation:blinkDot 1.6s infinite;"></span>SYS.STATUS</div>
+      <div style="color:rgba(150,172,160,.75);line-height:1.6;font-size:11px;">
+        UPLINK ....... {{ bootUplinkLabel }}<br>
+        NODE ......... ORBIT-7<br>
+        CH ........... 14A
+      </div>
+    </div>
+    <div style="position:absolute;top:34px;right:34px;font-size:12px;letter-spacing:1px;color:#ffb300;text-align:right;">
+      AUTH.LEVEL
+      <div style="color:rgba(150,172,160,.75);line-height:1.6;font-size:11px;margin-top:6px;">
+        CLEARANCE .... OMEGA<br>
+        DECRYPT ...... {{ decryptPct }}%<br>
+        USER ......... ROOT
+      </div>
+    </div>
+
+    <sc-if value="{{ bootStageAtLeast1 }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:130px;left:34px;font-size:12px;color:#9aa89f;line-height:1.9;">
+        <div style="opacity:.9;">&gt; ESTABLISHING SECURE UPLINK...</div>
+        <sc-if value="{{ bootStageAtLeast2 }}"><div style="opacity:.9;">&gt; DECRYPTING CORE METRICS (RSA-4096)...</div></sc-if>
+        <sc-if value="{{ bootStageAtLeast3 }}"><div style="opacity:.9;">&gt; SIGNAL STRENGTH: 98% [NOMINAL]</div></sc-if>
+        <sc-if value="{{ bootStageAtLeast4 }}"><div style="opacity:.9;">&gt; ACCESSING HQ DATABASE [AUTH_LEVEL_OMEGA]</div></sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ bootStageAtLeast3 }}" hint-placeholder-val="{{ false }}">
+      <div style="position:relative;width:220px;height:220px;display:flex;align-items:center;justify-content:center;animation:fadeUp .6s ease both;">
+        <div style="position:absolute;width:220px;height:220px;border-radius:50%;border:1.5px solid #00ff66;box-shadow:0 0 22px rgba(0,255,102,.35);"></div>
+        <div style="position:absolute;width:80px;height:220px;border-radius:50%;border:1px solid rgba(0,255,102,.55);left:70px;"></div>
+        <div style="position:absolute;width:220px;height:80px;border-radius:50%;border:1px solid rgba(0,255,102,.4);top:70px;transform:rotate(0deg);"></div>
+        <div style="position:absolute;width:220px;height:130px;border-radius:50%;border:1px solid rgba(0,255,102,.4);top:45px;"></div>
+        <div style="position:absolute;width:1.5px;height:220px;background:rgba(0,255,102,.55);"></div>
+        <div style="position:absolute;top:8px;left:8px;width:14px;height:14px;border-top:2px solid #ffb300;border-left:2px solid #ffb300;"></div>
+        <div style="position:absolute;top:8px;right:8px;width:14px;height:14px;border-top:2px solid #ffb300;border-right:2px solid #ffb300;"></div>
+        <div style="position:absolute;bottom:8px;left:8px;width:14px;height:14px;border-bottom:2px solid #ffb300;border-left:2px solid #ffb300;"></div>
+        <div style="position:absolute;bottom:8px;right:8px;width:14px;height:14px;border-bottom:2px solid #ffb300;border-right:2px solid #ffb300;"></div>
+        <div style="position:absolute;bottom:-20px;right:-30px;font-size:11px;color:#ffb300;white-space:nowrap;">COORD: 9.14°N / 99.45°E</div>
+
+        <sc-if value="{{ bootStageAtLeast4 }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;padding:12px 22px;border:1px solid #ffb300;background:rgba(6,7,6,.75);color:#ffb300;font-weight:700;font-size:20px;letter-spacing:3px;text-shadow:0 0 10px rgba(255,179,0,.6);animation:fadeUp .5s ease both;">UPLINK ESTABLISHED</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ bootStageAtLeast5 }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:26px;text-align:center;animation:fadeUp .5s ease both;">
+        <div style="color:{{ accessLineColor }};font-size:13px;letter-spacing:1px;">&gt;_ {{ accessLineLabel }}</div>
+        <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;">
+          <sc-for list="{{ codeDots }}" as="dot" hint-placeholder-count="6">
+            <div style="width:14px;height:14px;border:1px solid {{ accessLineColor }};background:{{ dot.bg }};"></div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ accessGranted }}" hint-placeholder-val="{{ false }}"></sc-if>
+        <div style="margin-top:18px;display:grid;grid-template-columns:repeat(3,44px);gap:8px;justify-content:center;">
+          <sc-for list="{{ keypad }}" as="k" hint-placeholder-count="12">
+            <div onclick="{{ k.onClick }}" style="width:44px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,255,102,.3);color:#9aa89f;font-size:14px;letter-spacing:1px;cursor:pointer;user-select:none;visibility:{{ k.visibility }};">{{ k.key }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="position:absolute;bottom:26px;left:34px;font-size:11px;color:rgba(150,172,160,.6);width:220px;">
+      SIGNAL STRENGTH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ decryptPct }}%
+      <div style="margin-top:4px;height:4px;background:rgba(0,255,102,.15);"><div style="height:100%;background:#00ff66;width:{{ decryptBarWidth }};transition:width .1s linear;"></div></div>
+    </div>
+    <div style="position:absolute;bottom:26px;right:34px;font-size:11px;color:rgba(150,172,160,.6);width:220px;text-align:right;">
+      DECRYPTION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ decryptPct }}%
+      <div style="margin-top:4px;height:4px;background:rgba(0,255,102,.15);"><div style="height:100%;background:#00ff66;width:{{ decryptBarWidth }};margin-left:auto;transition:width .1s linear;"></div></div>
+    </div>
+
+    <sc-if value="{{ showBootFooter }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;bottom:60px;left:0;right:0;text-align:center;color:#9aa89f;letter-spacing:5px;font-size:14px;font-weight:500;">
+        TLA SYSTEMS <span style="color:#ffb300;letter-spacing:2px;font-size:11px;">&nbsp;&nbsp;// HQ UPLINK</span>
+      </div>
+    </sc-if>
+    <sc-if value="{{ showSkipHint }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;color:rgba(150,172,160,.35);font-size:10px;letter-spacing:1px;">CLICK TO SKIP</div>
+    </sc-if>
+  </div>
+
+  <!-- ===================== TOP NAV ===================== -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:54px;padding:0 20px;border-bottom:1px solid rgba(120,180,150,.22);background:rgba(9,11,10,.85);position:relative;z-index:2;">
+    <div style="display:flex;align-items:center;gap:9px;min-width:260px;">
+      <span style="width:7px;height:7px;border-radius:50%;background:#00ff66;box-shadow:0 0 4px rgba(0,255,102,.7);animation:blinkDot 2.4s infinite;"></span>
+      <span style="font-size:11px;letter-spacing:.5px;color:#5fb98a;font-weight:500;">SYS_STATUS</span>
+      <span style="font-size:11px;letter-spacing:.5px;color:#c8d6ce;font-weight:600;">OPERATIONAL</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:18px;height:1px;background:rgba(120,180,150,.4);"></div>
+      <div style="font-size:15px;letter-spacing:3px;font-weight:600;color:#dfe9e3;">ASHCROFT_HQ<span style="color:#ffb300;font-weight:500;">_V2.0</span></div>
+      <div style="width:18px;height:1px;background:rgba(120,180,150,.4);"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;min-width:260px;justify-content:flex-end;">
+      <div style="display:flex;align-items:center;gap:6px;color:#7f948a;font-size:11px;font-weight:500;">
+        <div style="position:relative;width:11px;height:15px;">
+          <div style="position:absolute;top:0;left:1.5px;width:8px;height:7px;border:1.5px solid #5fb98a;border-bottom:none;border-radius:5px 5px 0 0;"></div>
+          <div style="position:absolute;bottom:0;left:0;width:11px;height:9px;background:#5fb98a;border-radius:1px;"></div>
+        </div>
+        AES-256
+      </div>
+      <div style="text-align:right;line-height:1.25;">
+        <div style="font-size:14px;letter-spacing:1.5px;color:#dfe9e3;font-weight:500;">{{ clockStr }}<span style="color:#7f948a;font-size:10px;font-weight:400;margin-left:4px;">ZULU</span></div>
+        <div style="font-size:9px;letter-spacing:1px;color:#6b7d73;">GRID 09.14°N / 99.45°E</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLASSIFICATION BANNER -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:22px;padding:0 20px;background:rgba(255,179,0,.08);border-bottom:1px solid rgba(255,179,0,.28);position:relative;z-index:2;font-size:9.5px;letter-spacing:2px;color:#ffb300;font-weight:600;">
+    <span>// RESTRICTED · INTERNAL OPERATIONS</span>
+    <span style="letter-spacing:3px;">AUTH_LEVEL_OMEGA</span>
+    <span style="color:rgba(255,179,0,.7);">DISTRIBUTION: ROOT ONLY</span>
+  </div>
+
+  <!-- ===================== BODY: SIDEBAR + MAIN ===================== -->
+  <div style="display:flex;align-items:stretch;position:relative;z-index:1;">
+
+    <!-- SIDEBAR -->
+    <div style="width:230px;flex:none;padding:20px 14px;display:flex;flex-direction:column;gap:10px;border-right:1px solid rgba(0,255,102,.2);min-height:calc(100vh - 57px);">
+      <div style="font-size:10px;letter-spacing:2px;color:rgba(150,172,160,.5);margin:2px 4px 8px;">OPERATIONS MENU</div>
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="4">
+        <div onclick="{{ item.onClick }}" style="cursor:pointer;padding:14px 14px;border:1px solid {{ item.borderColor }};background:{{ item.bg }};color:{{ item.color }};font-size:12.5px;letter-spacing:1.5px;display:flex;align-items:center;justify-content:space-between;transition:all .2s;box-shadow:{{ item.shadow }};">
+          <span>{{ item.label }}</span>
+          <span style="font-size:10px;opacity:.6;">{{ item.index }}</span>
+        </div>
+      </sc-for>
+
+      <div style="margin-top:auto;padding:12px 4px;font-size:10px;color:rgba(150,172,160,.4);line-height:1.8;letter-spacing:1px;">
+        NODE: ORBIT-7<br>
+        CH: 14A<br>
+        AUTH: OMEGA
+      </div>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div style="flex:1;padding:22px;min-height:calc(100vh - 57px);">
+
+      <sc-if value="{{ isSettingsView }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
+          <div style="position:relative;border:1px solid rgba(0,255,102,.35);background:rgba(10,18,14,.55);padding:20px;">
+            <div style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+            <div style="font-size:12px;letter-spacing:2px;color:#00ff66;margin-bottom:16px;">DISPLAY_CONFIG</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,255,102,.12);">
+              <span style="font-size:12px;color:rgba(150,172,160,.85);">TACTICAL_DARKMODE</span>
+              <div onclick="{{ toggleSetting_dark }}" style="width:38px;height:18px;border:1px solid #00ff66;position:relative;cursor:pointer;background:{{ settingDarkBg }};">
+                <div style="position:absolute;top:1px;width:14px;height:14px;background:#00ff66;transition:left .15s;left:{{ settingDarkLeft }};"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,255,102,.12);">
+              <span style="font-size:12px;color:rgba(150,172,160,.85);">CRT_SCANLINES</span>
+              <div onclick="{{ toggleSetting_scan }}" style="width:38px;height:18px;border:1px solid #00ff66;position:relative;cursor:pointer;background:{{ settingScanBg }};">
+                <div style="position:absolute;top:1px;width:14px;height:14px;background:#00ff66;transition:left .15s;left:{{ settingScanLeft }};"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="position:relative;border:1px solid rgba(0,255,102,.35);background:rgba(10,18,14,.55);padding:20px;">
+            <div style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+            <div style="font-size:12px;letter-spacing:2px;color:#00ff66;margin-bottom:16px;">SECURITY</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,255,102,.12);">
+              <span style="font-size:12px;color:rgba(150,172,160,.85);">TWO_FACTOR_AUTH</span>
+              <div onclick="{{ toggleSetting_twofa }}" style="width:38px;height:18px;border:1px solid #00ff66;position:relative;cursor:pointer;background:{{ settingTwofaBg }};">
+                <div style="position:absolute;top:1px;width:14px;height:14px;background:#00ff66;transition:left .15s;left:{{ settingTwofaLeft }};"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(0,255,102,.12);">
+              <span style="font-size:12px;color:rgba(150,172,160,.85);">AUTO_BACKUP</span>
+              <div onclick="{{ toggleSetting_backup }}" style="width:38px;height:18px;border:1px solid #00ff66;position:relative;cursor:pointer;background:{{ settingBackupBg }};">
+                <div style="position:absolute;top:1px;width:14px;height:14px;background:#00ff66;transition:left .15s;left:{{ settingBackupLeft }};"></div>
+              </div>
+            </div>
+            <div style="margin-top:14px;font-size:10.5px;color:rgba(150,172,160,.4);letter-spacing:.5px;">SESSION_TIMEOUT: 30 MIN · ROLE: ROOT</div>
+          </div>
+
+          <div style="position:relative;border:1px solid rgba(0,255,102,.35);background:rgba(10,18,14,.55);padding:20px;grid-column:1/-1;">
+            <div style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+            <div style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+            <div style="font-size:12px;letter-spacing:2px;color:#00ff66;margin-bottom:14px;">SYSTEM_LOG</div>
+            <div style="font-size:11.5px;color:rgba(150,172,160,.6);line-height:2;">
+              &gt; SETTINGS PANEL LOADED · AUTH_LEVEL_OMEGA CONFIRMED<br>
+              &gt; NO ANOMALIES DETECTED · UPTIME 99.94%
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSettingsView }}" hint-placeholder-val="{{ false }}">
+      </sc-if>
+
+      <div style="display:{{ gridDisplay }};grid-template-columns:1fr 1fr 1fr;gap:18px;">
+
+        <!-- COLUMN 1: AI AUTOMATION -->
+        <div style="position:relative;min-width:0;overflow:hidden;border:1px solid {{ automationBorder }};background:rgba(10,18,14,.55);padding:18px;opacity:{{ automationOpacity }};box-shadow:{{ automationShadow }};transition:all .35s;display:flex;flex-direction:column;gap:14px;">
+          <div style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:12px;letter-spacing:2px;color:#00ff66;">AI_AUTOMATION</div>
+            <div style="font-size:9.5px;letter-spacing:1px;color:#ffb300;border:1px solid rgba(255,179,0,.5);padding:2px 6px;">LIVE</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <sc-for list="{{ bots }}" as="bot" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid rgba(0,255,102,.12);">
+                <div style="display:flex;flex-direction:column;gap:2px;">
+                  <span style="font-size:11.5px;color:rgba(216,226,220,.9);letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;">{{ bot.name }}</span>
+                  <span style="font-size:9.5px;color:{{ bot.statusColor }};letter-spacing:1px;">{{ bot.status }}</span>
+                </div>
+                <div onclick="{{ bot.toggle }}" style="width:34px;height:16px;border:1px solid #00ff66;position:relative;cursor:pointer;background:{{ bot.trackBg }};flex:none;">
+                  <div style="position:absolute;top:1px;width:12px;height:12px;background:#00ff66;transition:left .15s;left:{{ bot.knobLeft }};"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10.5px;color:rgba(150,172,160,.7);margin-bottom:4px;letter-spacing:.5px;">
+              <span>BOT_UPLINK</span><span>{{ botUplinkPct }}%</span>
+            </div>
+            <div style="height:5px;background:rgba(0,255,102,.12);"><div style="height:100%;background:#00ff66;width:{{ botUplinkPct }}%;transition:width .5s;"></div></div>
+          </div>
+
+          <div style="background:rgba(0,0,0,.4);border:1px solid rgba(0,255,102,.15);padding:8px 10px;font-size:10px;color:#00ff66;line-height:1.7;height:110px;overflow:hidden;min-width:0;">
+            <sc-for list="{{ termLines }}" as="line" hint-placeholder-count="5">
+              <div style="opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ line }}</div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: METRIC LOGS -->
+        <div style="position:relative;min-width:0;overflow:hidden;border:1px solid {{ metricsBorder }};background:rgba(10,18,14,.55);padding:18px;opacity:{{ metricsOpacity }};box-shadow:{{ metricsShadow }};transition:all .35s;display:flex;flex-direction:column;gap:14px;">
+          <div style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:12px;letter-spacing:2px;color:#00ff66;">METRIC_LOGS</div>
+            <div style="font-size:9.5px;letter-spacing:1px;color:#ffb300;border:1px solid rgba(255,179,0,.5);padding:2px 6px;">Q3</div>
+          </div>
+
+          <div>
+            <div style="font-size:10px;color:rgba(150,172,160,.6);letter-spacing:1px;">REVENUE_YTD</div>
+            <div style="font-size:26px;color:#e2ece6;letter-spacing:1px;">{{ revenueLabel }}</div>
+          </div>
+
+          <svg viewBox="0 0 300 90" style="width:100%;height:90px;overflow:visible;">
+            <line x1="0" y1="22.5" x2="300" y2="22.5" stroke="rgba(0,255,102,.12)" stroke-width="1"></line>
+            <line x1="0" y1="45" x2="300" y2="45" stroke="rgba(0,255,102,.12)" stroke-width="1"></line>
+            <line x1="0" y1="67.5" x2="300" y2="67.5" stroke="rgba(0,255,102,.12)" stroke-width="1"></line>
+            <polyline points="{{ chartPoints }}" fill="none" stroke="#00ff66" stroke-width="1.4" style="filter:drop-shadow(0 0 2px rgba(0,255,102,.45));"></polyline>
+          </svg>
+
+          <div style="display:flex;align-items:flex-end;gap:6px;height:44px;">
+            <sc-for list="{{ barData }}" as="bar" hint-placeholder-count="6">
+              <div style="flex:1;background:#ffb300;height:{{ bar.height }}%;"></div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;gap:10px;">
+            <div style="flex:1;min-width:0;border:1px solid rgba(0,255,102,.2);padding:8px 4px;text-align:center;">
+              <div style="font-size:14px;color:#00ff66;">{{ kpiConversion }}%</div>
+              <div style="font-size:8.5px;color:rgba(150,172,160,.55);letter-spacing:1px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;">CONV</div>
+            </div>
+            <div style="flex:1;min-width:0;border:1px solid rgba(0,255,102,.2);padding:8px 4px;text-align:center;">
+              <div style="font-size:14px;color:#00ff66;">{{ kpiUptime }}%</div>
+              <div style="font-size:8.5px;color:rgba(150,172,160,.55);letter-spacing:.5px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;">UPTIME</div>
+            </div>
+            <div style="flex:1;min-width:0;border:1px solid rgba(0,255,102,.2);padding:8px 4px;text-align:center;">
+              <div style="font-size:14px;color:#ffb300;">{{ kpiLoad }}%</div>
+              <div style="font-size:8.5px;color:rgba(150,172,160,.55);letter-spacing:.5px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;">LOAD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMN 3: CLIENT DATABASE -->
+        <div style="position:relative;min-width:0;border:1px solid {{ clientsBorder }};background:rgba(10,18,14,.55);padding:18px;opacity:{{ clientsOpacity }};box-shadow:{{ clientsShadow }};transition:all .35s;display:flex;flex-direction:column;gap:12px;overflow:hidden;">
+          <div style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-left:1.5px solid #ffb300;"></div>
+          <div style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1.5px solid #ffb300;border-right:1.5px solid #ffb300;"></div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-size:12px;letter-spacing:2px;color:#00ff66;">CLIENT_DB</div>
+            <div style="font-size:9.5px;letter-spacing:1px;color:#ffb300;border:1px solid rgba(255,179,0,.5);padding:2px 6px;">ENCRYPTED</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:grid;grid-template-columns:1.4fr 1fr .8fr;font-size:9px;letter-spacing:1px;color:rgba(150,172,160,.5);padding-bottom:6px;border-bottom:1px solid rgba(0,255,102,.2);">
+              <span>TOKEN_ID</span><span>STATUS</span><span style="text-align:right;">REV</span>
+            </div>
+            <sc-for list="{{ clients }}" as="client" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:1.4fr 1fr .8fr;align-items:center;padding:7px 0;border-bottom:1px solid rgba(0,255,102,.08);font-size:10.5px;">
+                <span style="color:rgba(216,226,220,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ client.name }}</span>
+                <span style="display:flex;align-items:center;gap:5px;color:{{ client.statusColor }};font-size:9.5px;"><span style="width:5px;height:5px;border-radius:50%;background:{{ client.statusColor }};"></span>{{ client.status }}</span>
+                <span style="text-align:right;color:rgba(150,172,160,.75);">{{ client.revenueLabel }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:auto;overflow:hidden;border-top:1px solid rgba(0,255,102,.15);padding-top:8px;">
+            <div style="white-space:nowrap;font-size:9.5px;color:rgba(255,179,0,.75);letter-spacing:1px;animation:marquee 14s linear infinite;display:inline-block;">{{ tickerText }}&nbsp;&nbsp;&nbsp;&nbsp;{{ tickerText }}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+class Component extends DCLogic {
+  state = {
+    booted: false,
+    bootStage: 0,
+    decryptPct: 0,
+    now: new Date(),
+    activeView: 'overview',
+    bots: [
+      { id: 1, name: 'LEAD_SCRAPER_BOT', on: true },
+      { id: 2, name: 'CLIENT_ONBOARD_BOT', on: true },
+      { id: 3, name: 'INVOICE_BOT', on: false },
+      { id: 4, name: 'CONTENT_GEN_BOT', on: true },
+    ],
+    botUplinkPct: 92,
+    chartData: [40, 55, 48, 62, 58, 70, 66, 78, 74, 88, 82, 92],
+    barData: [30, 55, 40, 68, 52, 80],
+    kpis: { conversion: 24, uptime: 99.9, load: 62 },
+    clients: [
+      { id: '0x41', name: 'CLIENT_0X41', status: 'ACTIVE', revenue: 4200 },
+      { id: '0x7F', name: 'CLIENT_0X7F', status: 'LEAD', revenue: 0 },
+      { id: '0xB2', name: 'CLIENT_0XB2', status: 'ACTIVE', revenue: 8600 },
+      { id: '0xD9', name: 'CLIENT_0XD9', status: 'CHURNED', revenue: 0 },
+      { id: '0x3C', name: 'CLIENT_0X3C', status: 'ACTIVE', revenue: 3150 },
+      { id: '0x9A', name: 'CLIENT_0X9A', status: 'LEAD', revenue: 0 },
+    ],
+    termLines: ['> SYSTEM READY', '> AWAITING TASK QUEUE'],
+    revenueTotal: 128400,
+    settings: { dark: true, scan: true, twofa: true, backup: false },
+    enteredCode: '',
+    codeError: false,
+    accessGranted: false,
+  };
+
+  ACCESS_CODE = '220941';
+
+  componentDidMount() {
+    this._timeouts = [];
+    this._intervals = [];
+
+    const stageAt = (ms, stage) => {
+      this._timeouts.push(setTimeout(() => this.setState({ bootStage: stage }), ms));
+    };
+    stageAt(500, 1);
+    stageAt(1100, 2);
+    stageAt(1700, 3);
+    stageAt(2900, 4);
+    stageAt(4000, 5);
+
+    this._onKeyDown = (e) => {
+      const s = this.state;
+      if (s.bootStage < 5 || s.booted || s.accessGranted) return;
+      if (/^[0-9]$/.test(e.key)) {
+        this.setState(prev => {
+          const code = (prev.enteredCode + e.key).slice(0, 6);
+          return { enteredCode: code, codeError: false };
+        }, () => this.checkCode());
+      } else if (e.key === 'Backspace') {
+        this.setState(prev => ({ enteredCode: prev.enteredCode.slice(0, -1), codeError: false }));
+      }
+    };
+    document.addEventListener('keydown', this._onKeyDown);
+
+    this._intervals.push(setInterval(() => {
+      this.setState(s => s.decryptPct >= 100 ? s : { decryptPct: Math.min(100, s.decryptPct + 2) });
+    }, 45));
+
+    this._intervals.push(setInterval(() => this.setState({ now: new Date() }), 1000));
+
+    this._intervals.push(setInterval(() => {
+      this.setState(s => {
+        const delta = Math.round((Math.random() - 0.5) * 6);
+        return { botUplinkPct: Math.max(68, Math.min(98, s.botUplinkPct + delta)) };
+      });
+    }, 2200));
+
+    this._intervals.push(setInterval(() => {
+      this.setState(s => {
+        const d = s.chartData.slice(1);
+        const last = d[d.length - 1];
+        d.push(Math.max(20, Math.min(96, last + Math.round((Math.random() - 0.4) * 16))));
+        const bars = s.barData.map(b => Math.max(15, Math.min(90, b + Math.round((Math.random() - 0.5) * 18))));
+        return { chartData: d, barData: bars };
+      });
+    }, 2800));
+
+    const logLines = [
+      '> LEAD_SCRAPER_BOT: 3 NEW LEADS INGESTED',
+      '> CLIENT_ONBOARD_BOT: WORKFLOW COMPLETE',
+      '> INVOICE_BOT: STANDBY',
+      '> CONTENT_GEN_BOT: DRAFT QUEUED',
+      '> DB SYNC: OK [14ms]',
+      '> METRICS: SNAPSHOT SAVED',
+      '> UPLINK: STABLE',
+    ];
+    this._intervals.push(setInterval(() => {
+      this.setState(s => {
+        const next = logLines[Math.floor(Math.random() * logLines.length)];
+        const lines = [...s.termLines, next].slice(-6);
+        return { termLines: lines };
+      });
+    }, 2600));
+
+    const statuses = ['ACTIVE', 'LEAD', 'CHURNED'];
+    this._intervals.push(setInterval(() => {
+      this.setState(s => {
+        const clients = s.clients.map(c => c);
+        const idx = Math.floor(Math.random() * clients.length);
+        clients[idx] = { ...clients[idx], status: statuses[Math.floor(Math.random() * statuses.length)] };
+        return { clients };
+      });
+    }, 4200));
+  }
+
+  componentWillUnmount() {
+    (this._timeouts || []).forEach(clearTimeout);
+    (this._intervals || []).forEach(clearInterval);
+    if (this._onKeyDown) document.removeEventListener('keydown', this._onKeyDown);
+  }
+
+  checkCode = () => {
+    const s = this.state;
+    if (s.enteredCode.length < 6) return;
+    if (s.enteredCode === this.ACCESS_CODE) {
+      this.setState({ accessGranted: true, codeError: false });
+      this._timeouts.push(setTimeout(() => this.setState({ booted: true }), 900));
+    } else {
+      this.setState({ codeError: true });
+      this._timeouts.push(setTimeout(() => this.setState({ enteredCode: '', codeError: false }), 600));
+    }
+  };
+
+  handleDigitTap = (d) => {
+    const s = this.state;
+    if (s.bootStage < 5 || s.booted || s.accessGranted) return;
+    const code = (s.enteredCode + d).slice(0, 6);
+    this.setState({ enteredCode: code, codeError: false }, () => this.checkCode());
+  };
+
+  handleBackspaceTap = () => {
+    this.setState(prev => ({ enteredCode: prev.enteredCode.slice(0, -1), codeError: false }));
+  };
+
+  skipBoot = () => {
+    if (this.state.bootStage < 5) {
+      (this._timeouts || []).forEach(clearTimeout);
+      this.setState({ bootStage: 5, decryptPct: 100 });
+    }
+  };
+
+  setView = (key) => {
+    this.setState(s => ({ activeView: (s.activeView === key && key !== 'settings') || (s.activeView === key) ? (s.activeView === key ? 'overview' : key) : key }));
+  };
+
+  toggleBot = (id) => {
+    this.setState(s => ({ bots: s.bots.map(b => b.id === id ? { ...b, on: !b.on } : b) }));
+  };
+
+  toggleSetting = (key) => {
+    this.setState(s => ({ settings: { ...s.settings, [key]: !s.settings[key] } }));
+  };
+
+  statusColor(status) {
+    if (status === 'ACTIVE') return '#00ff66';
+    if (status === 'LEAD') return '#ffb300';
+    return 'rgba(255,90,90,.85)';
+  }
+
+  renderVals() {
+    const s = this.state;
+    const active = s.activeView;
+    const isSettingsView = active === 'settings';
+
+    const pad = n => String(n).padStart(2, '0');
+    const clockStr = `${pad(s.now.getHours())}:${pad(s.now.getMinutes())}:${pad(s.now.getSeconds())}`;
+
+    const focusStyle = (key) => {
+      if (active === 'overview') return { opacity: 1, border: 'rgba(0,255,102,.3)', shadow: 'none' };
+      if (active === key) return { opacity: 1, border: '#00ff66', shadow: '0 0 22px rgba(0,255,102,.25)' };
+      return { opacity: 0.35, border: 'rgba(0,255,102,.15)', shadow: 'none' };
+    };
+    const fa = focusStyle('automation');
+    const fm = focusStyle('metrics');
+    const fc = focusStyle('clients');
+
+    const navConf = [
+      { key: 'automation', label: 'AI AUTOMATION', index: '01' },
+      { key: 'metrics', label: 'METRIC LOGS', index: '02' },
+      { key: 'clients', label: 'CLIENT DATABASE', index: '03' },
+      { key: 'settings', label: 'SYSTEM SETTINGS', index: '04' },
+    ];
+    const navItems = navConf.map(n => {
+      const isActive = active === n.key;
+      return {
+        ...n,
+        onClick: () => this.setView(n.key),
+        borderColor: isActive ? '#00ff66' : 'rgba(0,255,102,.25)',
+        bg: isActive ? 'rgba(0,255,102,.08)' : 'transparent',
+        color: isActive ? '#eafff1' : 'rgba(150,172,160,.8)',
+        shadow: isActive ? '0 0 14px rgba(0,255,102,.15)' : 'none',
+      };
+    });
+
+    const bots = s.bots.map(b => ({
+      ...b,
+      status: b.on ? 'ONLINE' : 'STANDBY',
+      statusColor: b.on ? '#00ff66' : 'rgba(255,179,0,.8)',
+      toggle: () => this.toggleBot(b.id),
+      trackBg: b.on ? 'rgba(0,255,102,.15)' : 'transparent',
+      knobLeft: b.on ? '18px' : '1px',
+    }));
+
+    const chartMax = Math.max(...s.chartData);
+    const chartMin = Math.min(...s.chartData);
+    const range = Math.max(1, chartMax - chartMin);
+    const chartPoints = s.chartData.map((v, i) => {
+      const x = (i * 300) / (s.chartData.length - 1);
+      const y = 85 - ((v - chartMin) / range) * 75;
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+
+    const barData = s.barData.map(h => ({ height: h }));
+
+    const clients = s.clients.map(c => ({
+      ...c,
+      statusColor: this.statusColor(c.status),
+      revenueLabel: c.revenue > 0 ? `$${c.revenue.toLocaleString()}` : '—',
+    }));
+
+    const settingToggle = (key) => ({
+      onClick: () => this.toggleSetting(key),
+      bg: s.settings[key] ? 'rgba(0,255,102,.18)' : 'transparent',
+      left: s.settings[key] ? '20px' : '1px',
+    });
+    const dark = settingToggle('dark');
+    const scan = settingToggle('scan');
+    const twofa = settingToggle('twofa');
+    const backup = settingToggle('backup');
+
+    const bootUplinkLabel = s.bootStage >= 3 ? 'SYNC' : 'LOCKED';
+    const accessColor = s.accessGranted ? '#00ff66' : (s.codeError ? '#ff5a5a' : '#ffb300');
+    const codeDots = Array.from({ length: 6 }, (_, i) => ({ bg: i < s.enteredCode.length ? accessColor : 'transparent' }));
+    const keypad = ['1','2','3','4','5','6','7','8','9','','0','⌫'].map(k => ({
+      key: k,
+      visibility: k === '' ? 'hidden' : 'visible',
+      onClick: k === '⌫' ? this.handleBackspaceTap : (k === '' ? () => {} : () => this.handleDigitTap(k)),
+    }));
+
+    return {
+      bootOverlayOpacity: s.booted ? 0 : 1,
+      bootOverlayVisibility: s.booted ? 'hidden' : 'visible',
+      skipBoot: this.skipBoot,
+      decryptPct: s.decryptPct,
+      decryptBarWidth: `${s.decryptPct}%`,
+      bootStageAtLeast1: s.bootStage >= 1,
+      bootStageAtLeast2: s.bootStage >= 2,
+      bootStageAtLeast3: s.bootStage >= 3,
+      bootStageAtLeast4: s.bootStage >= 4,
+      bootStageAtLeast5: s.bootStage >= 5,
+      bootUplinkLabel,
+      accessLineLabel: s.accessGranted ? 'ACCESS GRANTED' : (s.codeError ? 'ACCESS DENIED — RETRY' : 'ENTER ACCESS CODE'),
+      accessLineColor: s.accessGranted ? '#00ff66' : (s.codeError ? '#ff5a5a' : '#ffb300'),
+      codeDots,
+      keypad,
+      accessGranted: s.accessGranted,
+      showSkipHint: s.bootStage < 5,
+      showBootFooter: s.bootStage < 5,
+
+      clockStr,
+      navItems,
+
+      isSettingsView,
+      gridDisplay: isSettingsView ? 'none' : 'grid',
+
+      automationBorder: fa.border, automationOpacity: fa.opacity, automationShadow: fa.shadow,
+      metricsBorder: fm.border, metricsOpacity: fm.opacity, metricsShadow: fm.shadow,
+      clientsBorder: fc.border, clientsOpacity: fc.opacity, clientsShadow: fc.shadow,
+
+      bots,
+      botUplinkPct: s.botUplinkPct,
+      termLines: s.termLines,
+
+      revenueLabel: `$${s.revenueTotal.toLocaleString()}`,
+      chartPoints,
+      barData,
+      kpiConversion: s.kpis.conversion,
+      kpiUptime: s.kpis.uptime,
+      kpiLoad: s.kpis.load,
+
+      clients,
+      tickerText: 'OPS_STATUS: ALL SYSTEMS NOMINAL · NO ANOMALIES DETECTED · UPLINK STABLE · LAST SYNC 00:00:04 AGO',
+
+      toggleSetting_dark: dark.onClick, settingDarkBg: dark.bg, settingDarkLeft: dark.left,
+      toggleSetting_scan: scan.onClick, settingScanBg: scan.bg, settingScanLeft: scan.left,
+      toggleSetting_twofa: twofa.onClick, settingTwofaBg: twofa.bg, settingTwofaLeft: twofa.left,
+      toggleSetting_backup: backup.onClick, settingBackupBg: backup.bg, settingBackupLeft: backup.left,
+    };
+  }
+}
+
+</script>
+
+
+</body></html>

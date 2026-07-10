@@ -1,0 +1,88 @@
+/* TLA HQ — tactical terminal design system (ported from Tyler's Claude Design mock) */
+
+:root {
+  --bg: #0a0b0a;
+  --bg-deep: #060706;
+  --panel: rgba(10, 18, 14, 0.55);
+  --green: #00ff66;      /* phosphor primary */
+  --amber: #ffb300;      /* secondary / corner brackets / warnings */
+  --red: #ff5a5a;        /* errors / churned / denied */
+  --text: #8a9c92;       /* muted body */
+  --text-bright: #dfe9e3;
+  --text-dim: rgba(150, 172, 160, 0.55);
+  --line-green: rgba(0, 255, 102, 0.2);
+  --line-soft: rgba(120, 180, 150, 0.22);
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint tactical grid backdrop */
+.tla-grid {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(90, 150, 120, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 150, 120, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* corner-bracket framed panel */
+.panel {
+  position: relative;
+  border: 1px solid rgba(0, 255, 102, 0.35);
+  background: var(--panel);
+}
+.panel .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+.panel .corner.tl { top: 6px; left: 6px; border-top: 1.5px solid var(--amber); border-left: 1.5px solid var(--amber); }
+.panel .corner.tr { top: 6px; right: 6px; border-top: 1.5px solid var(--amber); border-right: 1.5px solid var(--amber); }
+.panel .corner.bl { bottom: 6px; left: 6px; border-bottom: 1.5px solid var(--amber); border-left: 1.5px solid var(--amber); }
+.panel .corner.br { bottom: 6px; right: 6px; border-bottom: 1.5px solid var(--amber); border-right: 1.5px solid var(--amber); }
+
+/* CRT scanline overlay */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 3px);
+  opacity: 0.35;
+}
+
+@keyframes scanSweep {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  94% { opacity: 0.7; }
+  96% { opacity: 1; }
+}
+
+.blink-dot { animation: blinkDot 2s infinite; }
