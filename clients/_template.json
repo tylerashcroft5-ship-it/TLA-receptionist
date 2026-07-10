@@ -1,0 +1,42 @@
+{
+  "clientId": "unique-slug",
+  "businessName": "Business Name Ltd",
+  "industry": "dental | legal | trades | clinic | generic",
+
+  "phoneNumbers": ["+44..."],
+  "_comment_phoneNumbers": "The Vapi number(s) this client answers on. Used to route an inbound call to this config. For browser/test use, leave and select by clientId.",
+
+  "hours": "Mon-Fri 9am-5pm",
+  "timezone": "Europe/London",
+
+  "services": ["list", "of", "things they offer"],
+  "_comment_services": "Optional — if omitted, the industry playbook's defaults are used.",
+
+  "faqs": [
+    { "q": "Where are you based?", "a": "123 High Street, Townsville." },
+    { "q": "Do you offer free parking?", "a": "Yes, on-site." }
+  ],
+  "_comment_faqs": "Exact answers the receptionist may give verbatim. It will NOT invent anything outside these + services + hours.",
+
+  "capabilities": {
+    "canBook": true,
+    "canTransfer": true,
+    "canMessage": true
+  },
+
+  "transferNumber": "+44...",
+  "bookingUrl": "https://cal.com/...",
+  "ownerEmail": "owner@example.co.uk",
+  "ownerPhone": "+44...",
+
+  "voiceId": "",
+  "_comment_voiceId": "Optional per-client ElevenLabs voice (e.g. a clone of the owner's voice). Falls back to the global ELEVENLABS_VOICE_ID if empty.",
+
+  "overrides": {
+    "greeting": "",
+    "emergencyPolicy": "",
+    "collectFields": [],
+    "extraRules": []
+  },
+  "_comment_overrides": "Anything here overrides the industry playbook. Leave blank to use playbook defaults."
+}

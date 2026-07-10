@@ -1,0 +1,20 @@
+{
+  "name": "tla-receptionist",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TLA Systems AI voice receptionist — Vapi + Claude + ElevenLabs (British) + Deepgram",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "provision": "node scripts/provision-assistant.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "dotenv": "^16.4.7"
+  }
+}

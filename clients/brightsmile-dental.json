@@ -1,0 +1,25 @@
+{
+  "clientId": "brightsmile-dental",
+  "businessName": "BrightSmile Dental",
+  "industry": "dental",
+  "phoneNumbers": [],
+  "hours": "Mon-Thu 8:30am-5:30pm, Fri 8:30am-4pm",
+  "timezone": "Europe/London",
+  "services": ["NHS and private check-ups", "hygienist", "emergency appointments", "Invisalign", "teeth whitening"],
+  "faqs": [
+    { "q": "Are you taking new NHS patients?", "a": "We have a short NHS waiting list; I can take your details and add you." },
+    { "q": "Where are you?", "a": "Unit 4, Market Square, in the town centre, with parking behind the building." }
+  ],
+  "capabilities": { "canBook": true, "canTransfer": true, "canMessage": true },
+  "transferNumber": "",
+  "bookingUrl": "",
+  "ownerEmail": "practice@brightsmile.example.co.uk",
+  "ownerPhone": "",
+  "voiceId": "",
+  "overrides": {
+    "greeting": "",
+    "emergencyPolicy": "",
+    "collectFields": [],
+    "extraRules": []
+  }
+}

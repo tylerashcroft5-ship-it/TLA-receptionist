@@ -1,0 +1,25 @@
+{
+  "clientId": "example-plumbing",
+  "businessName": "Example Plumbing Ltd",
+  "industry": "trades",
+  "phoneNumbers": [],
+  "hours": "Mon-Fri 8am-6pm, Sat 9am-1pm",
+  "timezone": "Europe/London",
+  "services": ["emergency callouts", "boiler repairs", "leak fixes", "bathroom installations"],
+  "faqs": [
+    { "q": "What areas do you cover?", "a": "We cover the whole of Greater Manchester." },
+    { "q": "Do you charge for callouts?", "a": "The callout is free; you only pay once you approve the quote." }
+  ],
+  "capabilities": { "canBook": true, "canTransfer": true, "canMessage": true },
+  "transferNumber": "",
+  "bookingUrl": "",
+  "ownerEmail": "owner@example.co.uk",
+  "ownerPhone": "",
+  "voiceId": "",
+  "overrides": {
+    "greeting": "",
+    "emergencyPolicy": "",
+    "collectFields": [],
+    "extraRules": []
+  }
+}
