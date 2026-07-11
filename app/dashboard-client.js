@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "../lib/supabase/browser.js";
 
@@ -11,72 +11,8 @@ function Corners() {
   return (<><span className="corner tl" /><span className="corner tr" /><span className="corner bl" /><span className="corner br" /></>);
 }
 
-// ── Cinematic boot overlay (pure eye-candy; real auth already happened) ──
-function Boot({ onDone }) {
-  const [stage, setStage] = useState(0);
-  const [pct, setPct] = useState(0);
-  const timers = useRef([]);
-  useEffect(() => {
-    [ [400,1],[1000,2],[1600,3],[2600,4],[3400,5] ].forEach(([ms, s]) =>
-      timers.current.push(setTimeout(() => setStage(s), ms)));
-    const iv = setInterval(() => setPct((p) => Math.min(100, p + 3)), 40);
-    const done = setTimeout(onDone, 4200);
-    timers.current.push(iv, done);
-    return () => timers.current.forEach((t) => { clearTimeout(t); clearInterval(t); });
-  }, [onDone]);
-
-  return (
-    <div onClick={onDone} style={{ position: "fixed", inset: 0, zIndex: 80, background: "#060706", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", cursor: "pointer" }}>
-      <div style={{ position: "absolute", inset: 18, border: "1px solid rgba(0,255,102,.35)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg,transparent,rgba(0,255,102,.5),transparent)", animation: "scanSweep 3.2s linear infinite" }} />
-
-      <div style={{ position: "absolute", top: 34, left: 34, fontSize: 12, letterSpacing: 1, color: A }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-          <span className="blink-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: A }} />SYS.STATUS
-        </div>
-        <div style={{ color: "rgba(150,172,160,.75)", lineHeight: 1.6, fontSize: 11 }}>
-          UPLINK ....... {stage >= 3 ? "SYNC" : "LOCKED"}<br />NODE ......... ORBIT-7<br />CH ........... 14A
-        </div>
-      </div>
-      <div style={{ position: "absolute", top: 34, right: 34, fontSize: 12, letterSpacing: 1, color: A, textAlign: "right" }}>
-        AUTH.LEVEL
-        <div style={{ color: "rgba(150,172,160,.75)", lineHeight: 1.6, fontSize: 11, marginTop: 6 }}>
-          CLEARANCE .... OMEGA<br />DECRYPT ...... {pct}%<br />USER ......... ROOT
-        </div>
-      </div>
-
-      {stage >= 1 && (
-        <div style={{ position: "absolute", top: 130, left: 34, fontSize: 12, color: "#9aa89f", lineHeight: 1.9 }}>
-          <div>&gt; ESTABLISHING SECURE UPLINK...</div>
-          {stage >= 2 && <div>&gt; DECRYPTING CORE METRICS (RSA-4096)...</div>}
-          {stage >= 3 && <div>&gt; SIGNAL STRENGTH: 98% [NOMINAL]</div>}
-          {stage >= 4 && <div>&gt; ACCESSING HQ DATABASE [AUTH_LEVEL_OMEGA]</div>}
-        </div>
-      )}
-
-      {stage >= 3 && (
-        <div style={{ position: "relative", width: 220, height: 220, display: "flex", alignItems: "center", justifyContent: "center", animation: "fadeUp .6s ease both" }}>
-          <div style={{ position: "absolute", width: 220, height: 220, borderRadius: "50%", border: `1.5px solid ${G}`, boxShadow: "0 0 22px rgba(0,255,102,.35)" }} />
-          <div style={{ position: "absolute", width: 80, height: 220, borderRadius: "50%", border: "1px solid rgba(0,255,102,.55)", left: 70 }} />
-          <div style={{ position: "absolute", width: 220, height: 130, borderRadius: "50%", border: "1px solid rgba(0,255,102,.4)", top: 45 }} />
-          <div style={{ position: "absolute", width: 1.5, height: 220, background: "rgba(0,255,102,.55)" }} />
-          {stage >= 4 && (
-            <div style={{ position: "absolute", padding: "12px 22px", border: `1px solid ${A}`, background: "rgba(6,7,6,.75)", color: A, fontWeight: 700, fontSize: 20, letterSpacing: 3, textShadow: "0 0 10px rgba(255,179,0,.6)", animation: "fadeUp .5s ease both" }}>UPLINK ESTABLISHED</div>
-          )}
-        </div>
-      )}
-
-      <div style={{ position: "absolute", bottom: 60, left: 0, right: 0, textAlign: "center", color: "#9aa89f", letterSpacing: 5, fontSize: 14, fontWeight: 500 }}>
-        TLA SYSTEMS <span style={{ color: A, letterSpacing: 2, fontSize: 11 }}>// HQ UPLINK</span>
-      </div>
-      <div style={{ position: "absolute", bottom: 14, left: 0, right: 0, textAlign: "center", color: "rgba(150,172,160,.35)", fontSize: 10, letterSpacing: 1 }}>CLICK TO SKIP</div>
-    </div>
-  );
-}
-
 export default function Dashboard({ data, operator }) {
   const router = useRouter();
-  const [booted, setBooted] = useState(false);
   const [view, setView] = useState("overview");
   const [now, setNow] = useState(null);
 
@@ -113,8 +49,6 @@ export default function Dashboard({ data, operator }) {
 
   return (
     <div className="tla-grid scanlines" style={{ position: "relative", minHeight: "100vh", overflowX: "hidden", color: "var(--text)" }}>
-      {!booted && <Boot onDone={() => setBooted(true)} />}
-
       {/* TOP NAV */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 54, padding: "0 20px", borderBottom: "1px solid rgba(120,180,150,.22)", background: "rgba(9,11,10,.85)", position: "relative", zIndex: 2 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 9, minWidth: 220 }}>
