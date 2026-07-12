@@ -104,12 +104,16 @@ alter table events        enable row level security;
 
 drop policy if exists authed_read on tools;
 create policy authed_read on tools for select to authenticated using (true);
+-- clients + subscriptions get full CRUD so the dashboard's onboard/remove form
+-- (running as the authenticated operator) can add and delete clients live.
 drop policy if exists authed_read on clients;
-create policy authed_read on clients for select to authenticated using (true);
+drop policy if exists authed_all on clients;
+create policy authed_all on clients for all to authenticated using (true) with check (true);
 drop policy if exists authed_read on deployments;
 create policy authed_read on deployments for select to authenticated using (true);
 drop policy if exists authed_read on subscriptions;
-create policy authed_read on subscriptions for select to authenticated using (true);
+drop policy if exists authed_all on subscriptions;
+create policy authed_all on subscriptions for all to authenticated using (true) with check (true);
 drop policy if exists authed_read on call_logs;
 create policy authed_read on call_logs for select to authenticated using (true);
 drop policy if exists authed_read on events;

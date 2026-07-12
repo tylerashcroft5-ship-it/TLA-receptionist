@@ -20,7 +20,7 @@ export default async function Home() {
 
   const data = {
     clients: clients.map((c) => ({
-      id: c.id, name: c.name, status: c.status,
+      id: c.id, name: c.name, status: c.status, industry: c.industry,
       mrr: c.monthlyPence ? poundsFromPence(c.monthlyPence) : "—",
     })),
     revenue: {

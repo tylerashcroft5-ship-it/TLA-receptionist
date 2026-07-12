@@ -186,6 +186,135 @@ function WebBuilds({ web }) {
   );
 }
 
+// ── Automation clients: recurring receptionist retainers (MRR) ──
+function ClientManager({ clients, revenue }) {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [industry, setIndustry] = useState("generic");
+  const [amount, setAmount] = useState("250");
+  const [status, setStatus] = useState("active");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  const inputStyle = {
+    background: "rgba(0,0,0,.4)", border: "1px solid rgba(0,255,102,.3)", color: "#e2ece6",
+    fontFamily: "var(--font-mono)", fontSize: 12, padding: "9px 10px", letterSpacing: .5, width: "100%",
+  };
+  const labelStyle = { fontSize: 9, letterSpacing: 1.5, color: "rgba(150,172,160,.6)", marginBottom: 5, display: "block" };
+  const statusColor = (s) => (s === "active" ? G : s === "paused" ? A : RED);
+
+  async function add(e) {
+    e.preventDefault();
+    setErr("");
+    const pounds = parseFloat(amount);
+    if (!name.trim() || isNaN(pounds)) { setErr("NAME AND RETAINER REQUIRED"); return; }
+    setBusy(true);
+    const supabase = createClient();
+    const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40)
+      + "-" + Math.random().toString(36).slice(2, 6);
+    const { data: client, error: cErr } = await supabase
+      .from("clients")
+      .insert({ slug, business_name: name.trim(), industry, status })
+      .select()
+      .single();
+    if (cErr) { setBusy(false); setErr(cErr.message.toUpperCase()); return; }
+    const { error: sErr } = await supabase.from("subscriptions").insert({
+      client_id: client.id, amount_pence: Math.round(pounds * 100),
+      currency: "GBP", interval: "month", status: "active",
+    });
+    setBusy(false);
+    if (sErr) { setErr(sErr.message.toUpperCase()); return; }
+    setName(""); setAmount("250"); setIndustry("generic"); setStatus("active");
+    router.refresh();
+  }
+
+  async function remove(id) {
+    setBusy(true);
+    const supabase = createClient();
+    await supabase.from("clients").delete().eq("id", id); // cascade removes subscription
+    setBusy(false);
+    router.refresh();
+  }
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 18, alignItems: "start" }}>
+      {/* LEFT — MRR total + add form */}
+      <div className="panel" style={{ padding: 20, display: "flex", flexDirection: "column", gap: 16, minWidth: 0 }}>
+        <Corners />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ fontSize: 12, letterSpacing: 2, color: G }}>AUTOMATION_CLIENTS</div>
+          <div style={{ fontSize: 9.5, letterSpacing: 1, color: A, border: "1px solid rgba(255,179,0,.5)", padding: "2px 6px" }}>MRR</div>
+        </div>
+        <div>
+          <div style={{ fontSize: 10, color: dim, letterSpacing: 1 }}>MONTHLY RECURRING</div>
+          <div style={{ fontSize: 30, color: "#e2ece6", letterSpacing: 1 }}>{revenue.mrr}</div>
+          <div style={{ fontSize: 10, color: dim, letterSpacing: 1, marginTop: 2 }}>ANNUAL {revenue.annual} · {revenue.payingCount} PAYING</div>
+        </div>
+
+        <form onSubmit={add} style={{ display: "flex", flexDirection: "column", gap: 11, borderTop: "1px solid rgba(0,255,102,.15)", paddingTop: 14 }}>
+          <div style={{ fontSize: 10, letterSpacing: 2, color: G }}>+ ONBOARD CLIENT</div>
+          <div>
+            <label style={labelStyle}>BUSINESS NAME</label>
+            <input style={inputStyle} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. BrightSmile Dental" />
+          </div>
+          <div style={{ display: "flex", gap: 11 }}>
+            <div style={{ flex: 1 }}>
+              <label style={labelStyle}>INDUSTRY</label>
+              <select style={inputStyle} value={industry} onChange={(e) => setIndustry(e.target.value)}>
+                <option value="generic">GENERIC</option>
+                <option value="dental">DENTAL</option>
+                <option value="legal">LEGAL</option>
+                <option value="trades">TRADES</option>
+                <option value="clinic">CLINIC</option>
+              </select>
+            </div>
+            <div style={{ flex: 1 }}>
+              <label style={labelStyle}>RETAINER (£/MO)</label>
+              <input style={inputStyle} value={amount} onChange={(e) => setAmount(e.target.value)} inputMode="decimal" />
+            </div>
+          </div>
+          <div>
+            <label style={labelStyle}>STATUS</label>
+            <select style={inputStyle} value={status} onChange={(e) => setStatus(e.target.value)}>
+              <option value="active">ACTIVE</option>
+              <option value="paused">PAUSED</option>
+              <option value="churned">CHURNED</option>
+            </select>
+          </div>
+          {err && <div style={{ fontSize: 10, color: RED, letterSpacing: 1 }}>&gt; {err}</div>}
+          <button type="submit" disabled={busy} style={{ background: "rgba(0,255,102,.1)", border: `1px solid ${G}`, color: "#eafff1", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, padding: "10px", cursor: busy ? "wait" : "pointer" }}>
+            {busy ? "SAVING..." : "> ADD TO ROSTER"}
+          </button>
+        </form>
+      </div>
+
+      {/* RIGHT — client roster */}
+      <div className="panel" style={{ padding: 20, display: "flex", flexDirection: "column", gap: 12, minWidth: 0 }}>
+        <Corners />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ fontSize: 12, letterSpacing: 2, color: G }}>CLIENT_ROSTER</div>
+          <div style={{ fontSize: 9.5, letterSpacing: 1, color: A, border: "1px solid rgba(255,179,0,.5)", padding: "2px 6px" }}>{clients.length} ON FILE</div>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1.5fr .9fr .9fr .7fr 24px", fontSize: 9, letterSpacing: 1, color: "rgba(150,172,160,.5)", paddingBottom: 6, borderBottom: "1px solid rgba(0,255,102,.2)" }}>
+          <span>CLIENT</span><span>INDUSTRY</span><span>STATUS</span><span style={{ textAlign: "right" }}>£/MO</span><span />
+        </div>
+        {clients.length === 0 && <div style={{ padding: "12px 0", fontSize: 10.5, color: dim }}>&gt; NO CLIENTS YET — ONBOARD ONE ON THE LEFT</div>}
+        {clients.map((c) => (
+          <div key={c.id} style={{ display: "grid", gridTemplateColumns: "1.5fr .9fr .9fr .7fr 24px", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(0,255,102,.08)", fontSize: 10.5 }}>
+            <span style={{ color: "rgba(216,226,220,.9)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.name}</span>
+            <span style={{ color: "rgba(150,172,160,.7)", fontSize: 9.5 }}>{(c.industry || "generic").toUpperCase()}</span>
+            <span style={{ display: "flex", alignItems: "center", gap: 5, color: statusColor(c.status), fontSize: 9.5 }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: statusColor(c.status) }} />{c.status.toUpperCase()}
+            </span>
+            <span style={{ textAlign: "right", color: "#e2ece6" }}>{c.mrr}</span>
+            <button onClick={() => remove(c.id)} title="Remove" style={{ background: "transparent", border: "none", color: "rgba(255,90,90,.6)", cursor: "pointer", fontSize: 13, fontFamily: "var(--font-mono)", padding: 0 }}>×</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Dashboard({ data, operator }) {
   const router = useRouter();
   const [booted, setBooted] = useState(false);
@@ -224,6 +353,7 @@ export default function Dashboard({ data, operator }) {
   const statusColor = (s) => (s === "active" ? G : s === "paused" ? A : RED);
   const isSettings = view === "settings";
   const isWeb = view === "web";
+  const isClients = view === "clients";
 
   return (
     <div className="tla-grid scanlines" style={{ position: "relative", minHeight: "100vh", overflowX: "hidden", color: "var(--text)" }}>
@@ -290,6 +420,8 @@ export default function Dashboard({ data, operator }) {
             </div>
           ) : isWeb ? (
             <WebBuilds web={data.web} />
+          ) : isClients ? (
+            <ClientManager clients={data.clients} revenue={data.revenue} />
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 18 }}>
 
