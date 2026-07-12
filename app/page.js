@@ -11,8 +11,11 @@ export default async function Home() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  // Read dashboard data through the same authenticated client (anon key + user
+  // session). The `authed_read` RLS policies allow any logged-in user to select.
   const [clients, revenue, calls, callStats, tools] = await Promise.all([
-    getClients(), getRevenue(), getCalls(30), getCallStats(), getTools(),
+    getClients(supabase), getRevenue(supabase), getCalls(supabase, 30),
+    getCallStats(supabase), getTools(supabase),
   ]);
 
   const data = {
