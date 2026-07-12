@@ -114,3 +114,21 @@ drop policy if exists authed_read on call_logs;
 create policy authed_read on call_logs for select to authenticated using (true);
 drop policy if exists authed_read on events;
 create policy authed_read on events for select to authenticated using (true);
+
+-- ── Web builds (one-off website revenue) ────────────────────
+-- Separate from clients/subscriptions (which are recurring MRR). Tyler logs each
+-- site build he's paid for; the dashboard sums them for lifetime build revenue.
+create table if not exists web_projects (
+  id           uuid primary key default gen_random_uuid(),
+  name         text not null,
+  url          text,
+  amount_pence integer not null default 0,
+  built_on     date not null default current_date,
+  created_at   timestamptz not null default now()
+);
+
+alter table web_projects enable row level security;
+-- The dashboard add/delete form runs as the authenticated operator, so allow full
+-- CRUD to authenticated (single-operator internal tool behind login).
+drop policy if exists authed_all on web_projects;
+create policy authed_all on web_projects for all to authenticated using (true) with check (true);

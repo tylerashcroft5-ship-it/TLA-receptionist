@@ -4,7 +4,7 @@
 export const dynamic = "force-dynamic";
 
 import { createClient } from "../lib/supabase/server.js";
-import { getClients, getRevenue, getCalls, getCallStats, getTools, poundsFromPence } from "../lib/data.js";
+import { getClients, getRevenue, getCalls, getCallStats, getTools, getWebProjects, poundsFromPence } from "../lib/data.js";
 import Dashboard from "./dashboard-client.js";
 
 export default async function Home() {
@@ -13,9 +13,9 @@ export default async function Home() {
 
   // Read dashboard data through the same authenticated client (anon key + user
   // session). The `authed_read` RLS policies allow any logged-in user to select.
-  const [clients, revenue, calls, callStats, tools] = await Promise.all([
+  const [clients, revenue, calls, callStats, tools, web] = await Promise.all([
     getClients(supabase), getRevenue(supabase), getCalls(supabase, 30),
-    getCallStats(supabase), getTools(supabase),
+    getCallStats(supabase), getTools(supabase), getWebProjects(supabase),
   ]);
 
   const data = {
@@ -32,6 +32,17 @@ export default async function Home() {
     calls,
     callStats,
     tools,
+    web: {
+      items: web.items.map((p) => ({
+        id: p.id,
+        name: p.name,
+        url: p.url,
+        builtOn: p.built_on,
+        amount: poundsFromPence(p.amount_pence || 0),
+      })),
+      total: poundsFromPence(web.totalPence),
+      count: web.count,
+    },
   };
 
   const operator = user?.email ? user.email.toUpperCase() : "ROOT";

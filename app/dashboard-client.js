@@ -74,6 +74,118 @@ function Boot({ onDone }) {
   );
 }
 
+// ── Web builds: one-off website revenue with an inline add/delete form ──
+function WebBuilds({ web }) {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [amount, setAmount] = useState("150");
+  const [builtOn, setBuiltOn] = useState(() => new Date().toISOString().slice(0, 10));
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  const inputStyle = {
+    background: "rgba(0,0,0,.4)", border: "1px solid rgba(0,255,102,.3)", color: "#e2ece6",
+    fontFamily: "var(--font-mono)", fontSize: 12, padding: "9px 10px", letterSpacing: .5, width: "100%",
+  };
+  const labelStyle = { fontSize: 9, letterSpacing: 1.5, color: "rgba(150,172,160,.6)", marginBottom: 5, display: "block" };
+
+  async function add(e) {
+    e.preventDefault();
+    setErr("");
+    const pounds = parseFloat(amount);
+    if (!name.trim() || isNaN(pounds)) { setErr("NAME AND AMOUNT REQUIRED"); return; }
+    setBusy(true);
+    const supabase = createClient();
+    const { error } = await supabase.from("web_projects").insert({
+      name: name.trim(),
+      url: url.trim() || null,
+      amount_pence: Math.round(pounds * 100),
+      built_on: builtOn,
+    });
+    setBusy(false);
+    if (error) { setErr(error.message.toUpperCase()); return; }
+    setName(""); setUrl(""); setAmount("150");
+    router.refresh();
+  }
+
+  async function remove(id) {
+    setBusy(true);
+    const supabase = createClient();
+    await supabase.from("web_projects").delete().eq("id", id);
+    setBusy(false);
+    router.refresh();
+  }
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 18, alignItems: "start" }}>
+      {/* LEFT — total + add form */}
+      <div className="panel" style={{ padding: 20, display: "flex", flexDirection: "column", gap: 16, minWidth: 0 }}>
+        <Corners />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ fontSize: 12, letterSpacing: 2, color: G }}>WEB_BUILDS</div>
+          <div style={{ fontSize: 9.5, letterSpacing: 1, color: A, border: "1px solid rgba(255,179,0,.5)", padding: "2px 6px" }}>REVENUE</div>
+        </div>
+        <div>
+          <div style={{ fontSize: 10, color: dim, letterSpacing: 1 }}>TOTAL BUILD REVENUE</div>
+          <div style={{ fontSize: 30, color: "#e2ece6", letterSpacing: 1 }}>{web.total}</div>
+          <div style={{ fontSize: 10, color: dim, letterSpacing: 1, marginTop: 2 }}>{web.count} BUILD{web.count === 1 ? "" : "S"} LOGGED</div>
+        </div>
+
+        <form onSubmit={add} style={{ display: "flex", flexDirection: "column", gap: 11, borderTop: "1px solid rgba(0,255,102,.15)", paddingTop: 14 }}>
+          <div style={{ fontSize: 10, letterSpacing: 2, color: G }}>+ LOG NEW BUILD</div>
+          <div>
+            <label style={labelStyle}>CLIENT / SITE NAME</label>
+            <input style={inputStyle} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Joe's Barbers" />
+          </div>
+          <div>
+            <label style={labelStyle}>URL (OPTIONAL)</label>
+            <input style={inputStyle} value={url} onChange={(e) => setUrl(e.target.value)} placeholder="joesbarbers.vercel.app" />
+          </div>
+          <div style={{ display: "flex", gap: 11 }}>
+            <div style={{ flex: 1 }}>
+              <label style={labelStyle}>AMOUNT (£)</label>
+              <input style={inputStyle} value={amount} onChange={(e) => setAmount(e.target.value)} inputMode="decimal" />
+            </div>
+            <div style={{ flex: 1 }}>
+              <label style={labelStyle}>BUILD DATE</label>
+              <input style={inputStyle} type="date" value={builtOn} onChange={(e) => setBuiltOn(e.target.value)} />
+            </div>
+          </div>
+          {err && <div style={{ fontSize: 10, color: RED, letterSpacing: 1 }}>&gt; {err}</div>}
+          <button type="submit" disabled={busy} style={{ background: "rgba(0,255,102,.1)", border: `1px solid ${G}`, color: "#eafff1", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, padding: "10px", cursor: busy ? "wait" : "pointer" }}>
+            {busy ? "SAVING..." : "> COMMIT TO LEDGER"}
+          </button>
+        </form>
+      </div>
+
+      {/* RIGHT — ledger list */}
+      <div className="panel" style={{ padding: 20, display: "flex", flexDirection: "column", gap: 12, minWidth: 0 }}>
+        <Corners />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ fontSize: 12, letterSpacing: 2, color: G }}>BUILD_LEDGER</div>
+          <div style={{ fontSize: 9.5, letterSpacing: 1, color: A, border: "1px solid rgba(255,179,0,.5)", padding: "2px 6px" }}>ONE-OFF</div>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr .8fr 24px", fontSize: 9, letterSpacing: 1, color: "rgba(150,172,160,.5)", paddingBottom: 6, borderBottom: "1px solid rgba(0,255,102,.2)" }}>
+          <span>SITE</span><span>DATE</span><span style={{ textAlign: "right" }}>£</span><span />
+        </div>
+        {web.items.length === 0 && <div style={{ padding: "12px 0", fontSize: 10.5, color: dim }}>&gt; NO BUILDS LOGGED YET — ADD ONE ON THE LEFT</div>}
+        {web.items.map((p) => (
+          <div key={p.id} style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr .8fr 24px", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(0,255,102,.08)", fontSize: 10.5 }}>
+            <span style={{ minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+              <span style={{ color: "rgba(216,226,220,.9)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</span>
+              {p.url && <a href={(p.url.startsWith("http") ? p.url : "https://" + p.url)} target="_blank" rel="noreferrer" style={{ color: "rgba(95,185,138,.8)", fontSize: 9, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.url}</a>}
+            </span>
+            <span style={{ color: "rgba(150,172,160,.7)", fontSize: 9.5 }}>{p.builtOn}</span>
+            <span style={{ textAlign: "right", color: "#e2ece6" }}>{p.amount}</span>
+            <button onClick={() => remove(p.id)} title="Delete" style={{ background: "transparent", border: "none", color: "rgba(255,90,90,.6)", cursor: "pointer", fontSize: 13, fontFamily: "var(--font-mono)", padding: 0 }}>×</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Dashboard({ data, operator }) {
   const router = useRouter();
   const [booted, setBooted] = useState(false);
@@ -100,7 +212,8 @@ export default function Dashboard({ data, operator }) {
     { key: "tools", label: "AI AUTOMATION", index: "01" },
     { key: "metrics", label: "METRIC LOGS", index: "02" },
     { key: "clients", label: "CLIENT DATABASE", index: "03" },
-    { key: "settings", label: "SYSTEM SETTINGS", index: "04" },
+    { key: "web", label: "WEB BUILDS", index: "04" },
+    { key: "settings", label: "SYSTEM SETTINGS", index: "05" },
   ];
   const focus = (key) => {
     if (view === "overview") return { opacity: 1, border: "rgba(0,255,102,.3)", shadow: "none" };
@@ -110,6 +223,7 @@ export default function Dashboard({ data, operator }) {
 
   const statusColor = (s) => (s === "active" ? G : s === "paused" ? A : RED);
   const isSettings = view === "settings";
+  const isWeb = view === "web";
 
   return (
     <div className="tla-grid scanlines" style={{ position: "relative", minHeight: "100vh", overflowX: "hidden", color: "var(--text)" }}>
@@ -174,6 +288,8 @@ export default function Dashboard({ data, operator }) {
                 &gt; NO ANOMALIES DETECTED
               </div>
             </div>
+          ) : isWeb ? (
+            <WebBuilds web={data.web} />
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 18 }}>
 
@@ -218,6 +334,10 @@ export default function Dashboard({ data, operator }) {
                   <div style={{ fontSize: 10, color: dim, letterSpacing: 1 }}>MONTHLY RECURRING</div>
                   <div style={{ fontSize: 26, color: "#e2ece6", letterSpacing: 1 }}>{data.revenue.mrr}</div>
                   <div style={{ fontSize: 10, color: dim, letterSpacing: 1, marginTop: 2 }}>ANNUAL RUN-RATE {data.revenue.annual}</div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, paddingTop: 8, borderTop: "1px solid rgba(0,255,102,.12)" }}>
+                    <span style={{ fontSize: 10, color: dim, letterSpacing: 1 }}>WEB BUILDS (ONE-OFF)</span>
+                    <span style={{ fontSize: 12, color: A, letterSpacing: 1 }}>{data.web.total} · {data.web.count}</span>
+                  </div>
                 </div>
                 <div style={{ display: "flex", gap: 10 }}>
                   {[
